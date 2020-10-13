@@ -1,5 +1,5 @@
-% \documentclass[handout]{beamer} % Disable pause
-\documentclass{beamer}
+\documentclass[handout]{beamer} % Disable pause
+% \documentclass{beamer}
 
 \usepackage{xcolor}
 \definecolor{olive}{rgb}{0.3, 0.4, .1}
@@ -97,7 +97,7 @@
     \item<+-> For every NP language $\mathcal{L}$, the statement $x\in\mathcal{L}$ has a trivial proof system:
     \begin{enumerate}
       \item<+-> The prover sends $w$ to the verifier
-      \item<+-> The verifier checks $f(x,w)=1$
+      \item<+-> By definition of NP, the verifier checks $f(x,w)=1$
       \item<+-> \dgreen{Perfect completeness} and \dgreen{perfect soundness}
     \end{enumerate}
     \item<+-> Given an ECDSA public key $pk$, the prover proves that it learns the secret key $sk$
@@ -181,7 +181,7 @@
   \onslide<+-> Zero-Knowledge Proofs are proof systems that also have
   \begin{itemize}
     \item<+-> \textbf{Zero-Knowledgeness:} if \dgreen{statement $x$ is true}, then the verifier \red{cannot get any information} from its view (except the correctness of $x$)
-    \item<+-> The view of the verifier consists of: \blue{randomness} $r$ and the \blue{transcript} $\mathsf{tr}\langle\mathcal{P},\mathcal{V}\rangle(x)$
+    \item<+-> The \blue{view} of the verifier consists of: \blue{randomness} $r$ and the \blue{transcript} $\mathsf{tr}\langle\mathcal{P},\mathcal{V}\rangle(x)$
   \end{itemize}
   \onslide<+-> Formally: for any verifier $\mathcal{V}$, there exists a simulator $\mathcal{S}$, which on input a \dgreen{valid statement $x$}, can sample the verifier view, i.e. the distribution of $\mathcal{S}(x)$ is \red{indifferentiable} from that of $(r,\mathsf{tr}\langle\mathcal{P},\mathcal{V}\rangle(x))$
 }
@@ -263,24 +263,51 @@
     \item<+-> $\pi\leftarrow\mathcal{P}(x,w)$
     \item<+-> $0/1\leftarrow\mathcal{V}(x,\pi)$
   \end{itemize}
-  \onslide<+-> However, the above scenario implies
+  \onslide<+-> Question: does $\pi$ contain any knowledge?
   \begin{itemize}
-    \item<+-> The view of the verifier is just $\pi$
-    \item<+-> If $x$ is true: \blue{zero-knowledgeness} implies a simulator $\mathcal{S}(x)\to\pi$ \dgreen{indifferentiable from valid $\pi$}; in particular, the simulated $\pi$ \dgreen{should be accepted} with probability $1-\eta$
-    \item<+-> If $x$ is false: \blue{soundness} implies that any $\pi$ should be accepted with probability \red{less than $\varepsilon$}
-    \item<+-> Therefore, NIZK implies a P.P.T. algorithm that decides $\mathcal{L}$: $\mathcal{V}(x,\mathcal{S}(x))$
+    \item<+-> \red{Zero-knowledgeness} says \red{no}, anyone can easily generate it
+    \item<+-> \blue{Soundness} says, \blue{if $x$ is hard} to decide, as a certificate to its validity, \blue{$\pi$ is also hard} to compute
   \end{itemize}
+  \onslide<+-> Conclusion: NIZK only exists for easy problems.
+  % \onslide<+-> However, if the \red{prover} calls the \red{simulator} to generate $\pi$, what is the result of $\mathcal{V}(x,\pi)$?
+  % \begin{itemize}
+    % \item<+-> If $x$ is \dgreen{true}: \blue{zero-knowledgeness} implies $\pi$ should be indistinguisbale from valid proofs, in particular, $\mathcal{V}(x,\pi)=1$ with \blue{large} probability
+    % \item<+-> If $x$ is \red{false}: \blue{soundness} implies that $\mathcal{V}(x,\pi)=1$ with \blue{small} probability
+  % \end{itemize}
+  % \onslide<+-> In conclusion, anyone can just call $\mathcal{V}(x,\mathcal{S}(x))$ to decide $x$.\\\vspace{0.3cm}
+  % \onslide<+-> Threfore, NIZK only exists for trivial problems.
 }
 
 
 \frame
 {
   \frametitle{Non-Interactive Zero Knowledge}
-  \onslide<+-> To obtain NIZK for general NP languages, we have to introduce non-standard models
+  \onslide<+-> NIZK is only possible in \blue{Common Reference String (CRS)} model
   \begin{itemize}
-    \item<+-> Random Oracle (RO) model: both the prover and the verifier have access to a random oracle
-    \item<+-> Common Reference String (CRS) model: the prover and the verifier have access to a common string
+    \item<+-> Structured Reference String (SRS)
+    \item<+-> Uniform Random String (URS)
   \end{itemize}
+  \onslide<+-> Additionally, we need at least one of
+  \begin{itemize}
+    \item<+-> Random Oracle (RO) model
+    \item<+-> Trusted Third Party (TTP)
+  \end{itemize}
+
+  % \onslide<+->\begin{table}[tb]
+  %   \centering
+%
+  %   \begin{tabular}{l|cc}
+  %   \hline
+%
+  %   \hline
+  %                  & \textbf{URS} & \textbf{SRS} \\
+  %   \hline
+  %     \textbf{RO}  & $\checkmark$ & $\checkmark$ \\
+  %   \hline
+  %     \textbf{TTP} & $\times$            & $\checkmark$ \\
+  %   \hline
+  %   \end{tabular}
+  % \end{table}
 }
 
 \frame<presentation:0>
