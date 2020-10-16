@@ -1,5 +1,5 @@
-\documentclass[handout]{beamer} % Disable pause
-% \documentclass{beamer}
+% \documentclass[handout]{beamer} % Disable pause
+\documentclass{beamer}
 \usecolortheme{orchid}
 \useinnertheme{rounded}
 \usepackage{xcolor}
@@ -79,7 +79,7 @@
 \frame
 {
   \frametitle{Proof Systems}
-  \onslide<+-> A proof system is an interactive protocol where the prover $\mathcal{P}$ tries to convince the verifier $\mathcal{V}$ a statement $x$ is true
+  \onslide<+-> A proof system is an interactive protocol where the \blue{prover $\mathcal{P}$} tries to \dgreen{convince} the \blue{verifier $\mathcal{V}$} a \blue{statement $x$} is true
   \begin{itemize}
     \item<+-> \textbf{Completeness:} if statement $x$ is true, then the verifier $\mathcal{V}$ \dgreen{accepts} (outputs 1) with probability at least $1-\eta$
     \item<+-> \textbf{Soundness:} if statement $x$ is false, then for any prover $\mathcal{P}$, the verifier $\mathcal{V}$ \red{accepts} with probability less than $\varepsilon$ (called soundness error)
@@ -144,7 +144,7 @@
 \frame
 {
   \frametitle{Soundness}
-  \onslide<+->As cryptographer, when we construct a proof system and say it has knowledge soundness, we must prove it.
+  \onslide<+->As cryptographer, when we construct a proof system and say it has \blue{knowledge soundness}, we \red{must prove} it.
   \begin{itemize}
     \item<+->But how to prove that an adversary $\mathcal{A}$ \red{knows} something?
     \item<+->Generally, we cannot prove this using game-based strategy, that means solving a hard problem when $\mathcal{A}$ \red{doesn't know}
