@@ -1,5 +1,5 @@
-% \documentclass[handout]{beamer} % Disable pause
-\documentclass{beamer}
+\documentclass[handout]{beamer} % Disable pause
+% \documentclass{beamer}
 \usecolortheme{orchid}
 \useinnertheme{rounded}
 \usepackage{xcolor}
@@ -151,7 +151,7 @@
   \end{itemize}
   \onslide<+->Instead, we use \blue{Extractor} to formalize the notion of \blue{knowing}
   \begin{itemize}
-    \item<+-> Assume $\mathcal{A}$ and $\mathcal{E}$ are two algorithms, let $\mathcal{A}\|\mathcal{E}$ denote the algorithm where $\mathcal{A}$ and $\mathcal{E}$ execute simultaneously and $\mathcal{E}$ has \dgreen{white-box} access to the internal state of $\mathcal{A}$
+    \item<+-> Assume $\mathcal{A}$ and $\mathcal{E}$ are two algorithms, let $\mathcal{A}\|\mathcal{E}$ denote the algorithm where $\mathcal{A}$ and $\mathcal{E}$ execute simultaneously and $\mathcal{E}$ has \dgreen{non-black-box} access to the internal state of $\mathcal{A}$
     \item<+-> Denote by $\langle\mathcal{A}\|\mathcal{E},\mathcal{V}\rangle(x)\to(w,b)$ the protocol where $\mathcal{A}$ interacts with $\mathcal{V}$ and in the meantime $\mathcal{E}$ has access to the internal state of $\mathcal{A}$. At the end, $\mathcal{E}$ outputs $w$ and the verifier outputs $b$
   \end{itemize}
   \onslide<+->\begin{block}{Knowledge Soundness}
@@ -288,7 +288,7 @@
     \item<+-> Structured Reference String (SRS)
     \item<+-> Uniform Random String (URS)
   \end{itemize}
-  \onslide<+-> Additionally, we need at least one of
+  \onslide<+-> Recent constructions of NIZK usually require one of
   \begin{itemize}
     \item<+-> Random Oracle (RO) model
     \item<+-> Trusted Third Party (TTP)
